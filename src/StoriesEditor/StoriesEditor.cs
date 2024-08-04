@@ -9,27 +9,47 @@ namespace UnwillingLife.Tools;
 [Tool]
 public partial class StoriesEditor : VBoxContainer
 {
-    private List<NarrativeProfile> NarrativeProfile;
+    private StoryLoader storyLoader;
+    private StoryStats storyStats;
+    private IEnumerable<NarrativeStory> narrativeStoryList;
+    private IEnumerable<NarrativePoints> narrativePointsList;
+    private NarrativeIds currentNarrative;
 
-    // Called when the node enters the scene tree for the first time.
     public override void _Ready()
 	{
-		NarrativeProfile = CSVTools.GetNarrativeCSV().ToList();
-		RefreshCharacterList();
+		storyLoader = GetNode<StoryLoader>("StoryLoader");
+		//StoryLoader = GetNode<StoryLoader>("StoryDescription");
+		storyStats = GetNode<StoryStats>("StoryStats");
+		storyLoader.storyLoaderEventHandler += LoadStory;
+		narrativeStoryList = CSVTools.LoadNarrativeStoryCSV().ToList();
+		narrativePointsList = CSVTools.LoadNarrativePointsCSV().ToList();
 	}
 
-    private void RefreshCharacterList()
-	{
-		CharacterList.Clear();
-		foreach (var item in NarrativeProfile)
-		{
-			CharacterList.AddItem(item.Name);
-		}
-	}
+    private void LoadStory(NarrativeIds s)
+    {
+		throw new NotImplementedException();
 
+		currentNarrative = s;
+		storyStats
+		.SetStoryStats(
+			narrativePointsList
+				.Where(
+				p => 
+					p.CharacterId == currentNarrative.CharacterId && 
+					p.StoryId == currentNarrative.StoryId
+				).ToList()
+		);
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
+		narrativeStoryList
+		.Where(
+		p => 
+			p.CharacterId == currentNarrative.CharacterId && 
+			p.StoryId == currentNarrative.StoryId
+		).First();
+    }
+
+    // Called every frame. 'delta' is the elapsed time since the previous frame.
+    public override void _Process(double delta)
 	{
 	}
 }

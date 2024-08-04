@@ -5,26 +5,26 @@
 [node name="StoryLoader" type="HBoxContainer"]
 script = ExtResource("1_5v6ac")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="MainBody" type="HBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="HBoxContainer"]
+[node name="Label" type="Label" parent="MainBody"]
 layout_mode = 2
 text = "Character: "
 
-[node name="OptionButton" type="OptionButton" parent="HBoxContainer"]
+[node name="OB_CharacterList" type="OptionButton" parent="MainBody"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MainBody"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="HBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="MainBody/HBoxContainer"]
 layout_mode = 2
 text = "Story: "
 
-[node name="SpinBox" type="SpinBox" parent="HBoxContainer/HBoxContainer"]
+[node name="SB_StoryIndex" type="SpinBox" parent="MainBody/HBoxContainer"]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="HBoxContainer"]
+[node name="B_Load" type="Button" parent="MainBody"]
 layout_mode = 2
 text = "Load"

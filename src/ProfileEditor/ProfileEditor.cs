@@ -16,7 +16,7 @@ public partial class ProfileEditor : HBoxContainer
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
 	{
-		NarrativeProfile = CSVTools.GetNarrativeCSV().ToList();
+		NarrativeProfile = CSVTools.LoadNarrativeProfile().ToList();
 		CharacterList = GetNode<ItemList>("CharacterBox/CharacterList");
 		CharacterViewer = GetNode<CharacterViewer>("CharacterViewer");
 		CharacterViewer.OnSaveSignal += CharacterViewer_OnSaveSignal;
@@ -30,7 +30,7 @@ public partial class ProfileEditor : HBoxContainer
 			NarrativeProfile.FindIndex(e=>e.CharacterId==narrativeProfile.CharacterId)
 			] = narrativeProfile;
 			
-		CSVTools.SaveNarrativeCSV(NarrativeProfile);
+		CSVTools.SaveNarrativeProfile(NarrativeProfile);
     }
 
     private void RefreshCharacterList()
