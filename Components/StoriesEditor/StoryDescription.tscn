@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://ddn8m6fvckmqs"]
+
+[node name="StoryDescription" type="VBoxContainer"]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "Description:"
+
+[node name="TextEdit" type="TextEdit" parent="HBoxContainer"]
+custom_minimum_size = Vector2(0, 35.825)
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "dsasa"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer4"]
+layout_mode = 2
+text = "Date:"
+
+[node name="TextEdit" type="TextEdit" parent="HBoxContainer4"]
+custom_minimum_size = Vector2(0, 35.825)
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "dsasa"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer3"]
+layout_mode = 2
+text = "Cause:"
+
+[node name="TextEdit" type="TextEdit" parent="HBoxContainer3"]
+custom_minimum_size = Vector2(0, 35.825)
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "dsasa"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer2"]
+layout_mode = 2
+text = "Able to Suicide:"
+
+[node name="CheckButton" type="CheckButton" parent="HBoxContainer2"]
+layout_mode = 2

@@ -1,10 +1,13 @@
-[gd_scene format=3 uid="uid://cbfmle6bvcnti"]
+[gd_scene load_steps=2 format=3 uid="uid://cbfmle6bvcnti"]
+
+[ext_resource type="Script" path="res://addons/UnwillingLifeTools/src/StoriesEditor/StatsEditor.cs" id="1_e05p3"]
 
 [node name="VBoxContainer" type="VBoxContainer"]
+script = ExtResource("1_e05p3")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 2
-text = "Description"
+text = "ss"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
