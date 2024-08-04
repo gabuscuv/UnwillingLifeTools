@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://doyrwejdsl8h"]
+
+[ext_resource type="Script" path="res://addons/UnwillingLifeTools/src/ProfileEditor/ProfileEditor.cs" id="1_65hbh"]
+[ext_resource type="PackedScene" uid="uid://dhu3qanbwgnyd" path="res://addons/UnwillingLifeTools/Components/ProfileEditor/CharacterViewer.tscn" id="2_2mr1s"]
+
+[node name="ProfileEditor" type="HBoxContainer"]
+script = ExtResource("1_65hbh")
+
+[node name="CharacterBox" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="CharacterList" type="ItemList" parent="CharacterBox"]
+clip_contents = false
+custom_minimum_size = Vector2(84.995, 0)
+layout_mode = 2
+size_flags_vertical = 3
+item_count = 2
+item_0/text = "Manuela"
+item_1/text = "Miguel"
+
+[node name="AddCharacterButton" type="Button" parent="CharacterBox"]
+layout_mode = 2
+text = "ADD"
+
+[node name="CharacterViewer" parent="." instance=ExtResource("2_2mr1s")]
+layout_mode = 2
+
+[connection signal="item_clicked" from="CharacterBox/CharacterList" to="." method="ClickedCharacterInCharacterList"]

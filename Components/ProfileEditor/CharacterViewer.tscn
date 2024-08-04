@@ -1,0 +1,71 @@
+[gd_scene load_steps=2 format=3 uid="uid://dhu3qanbwgnyd"]
+
+[ext_resource type="Script" path="res://addons/UnwillingLifeTools/src/ProfileEditor/CharacterViewer.cs" id="1_7wx5a"]
+
+[node name="CharacterViewer" type="VBoxContainer"]
+custom_minimum_size = Vector2(410.235, 0)
+script = ExtResource("1_7wx5a")
+
+[node name="HBC_Name" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(100.54, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBC_Name"]
+layout_mode = 2
+text = "Name:"
+
+[node name="TE_Name" type="TextEdit" parent="HBC_Name"]
+custom_minimum_size = Vector2(0, 36.145)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "fdsfsdfsd"
+
+[node name="HBC_Education" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(100.54, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBC_Education"]
+layout_mode = 2
+text = "Education:"
+
+[node name="TE_Education" type="TextEdit" parent="HBC_Education"]
+custom_minimum_size = Vector2(0, 36.145)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "fdsfsdfsd"
+
+[node name="HBC_YoB" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(100.54, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBC_YoB"]
+layout_mode = 2
+text = "Year Of Birth:"
+
+[node name="TE_YoB" type="TextEdit" parent="HBC_YoB"]
+custom_minimum_size = Vector2(0, 36.145)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "fdsfsdfsd"
+
+[node name="HBC_History" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(100.54, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBC_History"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "History:"
+
+[node name="TE_History" type="TextEdit" parent="HBC_History"]
+custom_minimum_size = Vector2(0, 153.12)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "fdsfsdfsd"
+caret_type = 1
+
+[node name="B_Save" type="Button" parent="."]
+custom_minimum_size = Vector2(54.43, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Save"
