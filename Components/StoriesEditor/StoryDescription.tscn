@@ -1,41 +1,44 @@
-[gd_scene format=3 uid="uid://ddn8m6fvckmqs"]
+[gd_scene load_steps=2 format=3 uid="uid://ddn8m6fvckmqs"]
+
+[ext_resource type="Script" path="res://addons/UnwillingLifeTools/src/StoriesEditor/StoryDescription.cs" id="1_w3kx0"]
 
 [node name="StoryDescription" type="VBoxContainer"]
+script = ExtResource("1_w3kx0")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="HBC_Description" type="HBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="HBoxContainer"]
+[node name="Label" type="Label" parent="HBC_Description"]
 layout_mode = 2
 text = "Description:"
 
-[node name="TextEdit" type="TextEdit" parent="HBoxContainer"]
+[node name="TE_Description" type="TextEdit" parent="HBC_Description"]
 custom_minimum_size = Vector2(0, 35.825)
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "dsasa"
 
-[node name="HBoxContainer4" type="HBoxContainer" parent="."]
+[node name="HBC_Date" type="HBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="HBoxContainer4"]
+[node name="Label" type="Label" parent="HBC_Date"]
 layout_mode = 2
 text = "Date:"
 
-[node name="TextEdit" type="TextEdit" parent="HBoxContainer4"]
+[node name="TE_Date" type="TextEdit" parent="HBC_Date"]
 custom_minimum_size = Vector2(0, 35.825)
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "dsasa"
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="."]
+[node name="HBC_Cause" type="HBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="HBoxContainer3"]
+[node name="Label" type="Label" parent="HBC_Cause"]
 layout_mode = 2
 text = "Cause:"
 
-[node name="TextEdit" type="TextEdit" parent="HBoxContainer3"]
+[node name="TE_Cause" type="TextEdit" parent="HBC_Cause"]
 custom_minimum_size = Vector2(0, 35.825)
 layout_mode = 2
 size_flags_horizontal = 3

@@ -16,7 +16,7 @@ public partial class StoryStats : HBoxContainer
 		Debug.WriteLine("Test");
 		StatsEditor statsEditor = null;
 		PackedScene packedScene = ResourceLoader.Load("res://addons/UnwillingLifeTools/Components/StoriesEditor/StatsEditor.tscn") as PackedScene;
-		foreach (var choice in Enum.GetValues<ENarrativeChoice>().Skip(1)) 
+		foreach (var choice in Enum.GetValues<ENarrativeChoice>()) 
 		{
 			statsEditor = packedScene.Instantiate<StatsEditor>();
 			statsEditor.Name = "SE_" + choice.ToString();
@@ -29,7 +29,7 @@ public partial class StoryStats : HBoxContainer
 	{
 		foreach (var narrativePoint in narrativePointList)
 		{
-			narrativePoint.
+			GetNode<StatsEditor>("SE_" + narrativePoint.Choice.ToString()).SetStats(narrativePoint);
 		}
 	}
 

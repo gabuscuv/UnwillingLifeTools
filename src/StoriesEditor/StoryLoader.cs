@@ -1,17 +1,19 @@
 #if TOOLS
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using Godot;
 using UnwillingLife.Data;
 
 namespace UnwillingLife.Tools;
-public delegate void StoryLoaderEventHandler(NarrativeIds s);
 [Tool]
 public partial class StoryLoader : HBoxContainer
 {
-	
-	public StoryLoaderEventHandler storyLoaderEventHandler;
+	public delegate void StoryLoaderEventHandler(NarrativeIds s);
+
+	public StoryLoaderEventHandler StoryLoaderEvent { get; set; }
     private List<NarrativeBase> NarrativeProfile;
 	private OptionButton CharacterOptionButton;
     private SpinBox SB_StoryIndex;
@@ -21,18 +23,22 @@ public partial class StoryLoader : HBoxContainer
 	{
 		CharacterOptionButton = GetNode<OptionButton>("MainBody/OB_CharacterList");
 		SB_StoryIndex = GetNode<SpinBox>("MainBody/HBoxContainer/SB_StoryIndex");
+		
+		GetNode<Button>("MainBody/B_Refresh").Pressed += RefreshCharacterList;
+		GetNode<Button>("MainBody/B_Load").Pressed += LoadButtonPressed;
 		NarrativeProfile = CSVTools.LoadNarrativeProfile().ToList<NarrativeBase>();
-		RefreshCharacterList();
-		GetNode<OptionButton>("MainBody/B_Load").Pressed += LoadButtonPressed;
 	}
 
     private void LoadButtonPressed()
     {
-
-		storyLoaderEventHandler.Invoke(new()
+		// Debug.WriteLine(@$"
+		// Length: {NarrativeProfile.Count}
+		// NarrativeProfile: {CharacterOptionButton.GetSelectableItem()} - {SB_StoryIndex.Value}
+		// ");
+		StoryLoaderEvent.Invoke(new NarrativeIds()
 		{
 			CharacterId =
-			NarrativeProfile.ElementAt(CharacterOptionButton.GetIndex()).CharacterId,
+			NarrativeProfile.ElementAt(CharacterOptionButton.GetSelectableItem()).CharacterId,
 			StoryId = (int)SB_StoryIndex.Value
 		});
     }

@@ -7,34 +7,33 @@ script = ExtResource("1_e05p3")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 2
-text = "ss"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="HBC_Stress" type="HBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="HBoxContainer"]
+[node name="Label" type="Label" parent="HBC_Stress"]
 layout_mode = 2
 text = "Stress: "
 
-[node name="SpinBox" type="SpinBox" parent="HBoxContainer"]
+[node name="SB_Stress" type="SpinBox" parent="HBC_Stress"]
 layout_mode = 2
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="."]
+[node name="HBC_Concern" type="HBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="HBoxContainer2"]
+[node name="Label" type="Label" parent="HBC_Concern"]
 layout_mode = 2
 text = "Concern: "
 
-[node name="SpinBox" type="SpinBox" parent="HBoxContainer2"]
+[node name="SB_Concern" type="SpinBox" parent="HBC_Concern"]
 layout_mode = 2
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="."]
+[node name="HBC_MentalStability" type="HBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="HBoxContainer3"]
+[node name="Label" type="Label" parent="HBC_MentalStability"]
 layout_mode = 2
 text = "Mental Stability: "
 
-[node name="SpinBox" type="SpinBox" parent="HBoxContainer3"]
+[node name="SB_MentalStability" type="SpinBox" parent="HBC_MentalStability"]
 layout_mode = 2
