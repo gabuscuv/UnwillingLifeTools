@@ -21,6 +21,7 @@ public partial class StoryStats : HBoxContainer
 			statsEditor = packedScene.Instantiate<StatsEditor>();
 			statsEditor.Name = "SE_" + choice.ToString();
 			statsEditor.StatNameTitle = "" + choice.ToString();
+			statsEditor.Choice = choice;
 			AddChild(statsEditor);
 		}
 	}
@@ -36,9 +37,10 @@ public partial class StoryStats : HBoxContainer
 	public List<NarrativePoints> GetStoryStats()
 	{
 		List<NarrativePoints> output = new();
-		foreach (var choice in Enum.GetValues<ENarrativeChoice>()) 
+		foreach (var choice in Enum.GetNames<ENarrativeChoice>()) 
 		{
-			output.Add(GetNode<StatsEditor>("SE_" + choice.ToString()).GetStats());
+
+			output.Add(GetNode<StatsEditor>("SE_" + choice).GetStats());
 		}
 		return output;
 	}

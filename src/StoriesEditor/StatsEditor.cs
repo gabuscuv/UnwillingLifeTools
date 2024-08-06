@@ -14,8 +14,9 @@ public partial class StatsEditor : VBoxContainer
 	private SpinBox sb_Stress;
 	private SpinBox sb_Concern;
 	private SpinBox sb_MentalStability;
+    public ENarrativeChoice Choice;
 
-	private string GetNodeName(string name)
+    private string GetNodeName(string name)
 	{
 		return $"HBC_{name}/SB_{name}";
 	}
@@ -32,6 +33,7 @@ public partial class StatsEditor : VBoxContainer
 
 	public void SetStats(NarrativePoints e)
 	{
+		Choice = e.Choice;
 		sb_Stress.Value = e.Stress;
 		sb_Concern.Value = e.Concern;
 		sb_MentalStability.Value = e.MentalStability;
@@ -41,6 +43,7 @@ public partial class StatsEditor : VBoxContainer
 	{
 		return new()
 		{
+			Choice = Choice,
 			Stress = (int)sb_Stress.Value,
 			Concern = (int)sb_Concern.Value,
 			MentalStability = (int)sb_MentalStability.Value,
