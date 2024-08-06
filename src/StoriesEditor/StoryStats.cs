@@ -33,6 +33,16 @@ public partial class StoryStats : HBoxContainer
 		}
 	}
 
+	public List<NarrativePoints> GetStoryStats()
+	{
+		List<NarrativePoints> output = new();
+		foreach (var choice in Enum.GetValues<ENarrativeChoice>()) 
+		{
+			output.Add(GetNode<StatsEditor>("SE_" + choice.ToString()).GetStats());
+		}
+		return output;
+	}
+
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{

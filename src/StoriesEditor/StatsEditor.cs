@@ -11,16 +11,16 @@ public partial class StatsEditor : VBoxContainer
 {
 	[Export]
 	public string StatNameTitle = string.Empty;
-    private SpinBox sb_Stress;
-    private SpinBox sb_Concern;
-    private SpinBox sb_MentalStability;
+	private SpinBox sb_Stress;
+	private SpinBox sb_Concern;
+	private SpinBox sb_MentalStability;
 
-    private string GetNodeName(string name) 
+	private string GetNodeName(string name)
 	{
 		return $"HBC_{name}/SB_{name}";
 	}
-    // Called when the node enters the scene tree for the first time.
-    public override void _Ready()
+	// Called when the node enters the scene tree for the first time.
+	public override void _Ready()
 	{
 		GetNode<Label>("Label").Text = StatNameTitle;
 
@@ -30,12 +30,21 @@ public partial class StatsEditor : VBoxContainer
 
 	}
 
-	public void SetStats(NarrativePoints e) 
+	public void SetStats(NarrativePoints e)
 	{
 		sb_Stress.Value = e.Stress;
 		sb_Concern.Value = e.Concern;
 		sb_MentalStability.Value = e.MentalStability;
+	}
 
+	public NarrativePoints GetStats()
+	{
+		return new()
+		{
+			Stress = (int)sb_Stress.Value,
+			Concern = (int)sb_Concern.Value,
+			MentalStability = (int)sb_MentalStability.Value,
+		};
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

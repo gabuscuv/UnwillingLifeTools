@@ -30,8 +30,17 @@ public partial class StoryDescription : VBoxContainer
 		te_Cause.Text = storyDescription.Cause;
 		te_Description.Text = storyDescription.Description;
 		te_Date.Text = storyDescription.IssueDate;
-
 	}
+	public NarrativeStory GetStoryDescription()
+	{
+		return new()
+		{
+			Description = te_Description.Text,
+			Cause = te_Cause.Text,
+			IssueDate = te_Date.Text,
+		};
+	}
+
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)

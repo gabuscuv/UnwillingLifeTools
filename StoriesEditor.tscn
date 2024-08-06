@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cef7224uyy07"]
+[gd_scene load_steps=5 format=3 uid="uid://ohc2qdu3mrjl"]
 
 [ext_resource type="PackedScene" uid="uid://d3oe1qusstq2d" path="res://addons/UnwillingLifeTools/Components/StoriesEditor/StoryLoader.tscn" id="1_4w5bh"]
 [ext_resource type="Script" path="res://addons/UnwillingLifeTools/src/StoriesEditor/StoriesEditor.cs" id="1_o3e2q"]

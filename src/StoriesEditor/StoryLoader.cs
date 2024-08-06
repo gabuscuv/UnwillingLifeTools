@@ -14,7 +14,9 @@ public partial class StoryLoader : HBoxContainer
 	public delegate void StoryLoaderEventHandler(NarrativeIds s);
 
 	public StoryLoaderEventHandler StoryLoaderEvent { get; set; }
-    private List<NarrativeBase> NarrativeProfile;
+	public StoryLoaderEventHandler StorySaverEvent { get; set; }
+
+    private List<NarrativeBaseWithName> NarrativeProfile;
 	private OptionButton CharacterOptionButton;
     private SpinBox SB_StoryIndex;
 
@@ -26,7 +28,8 @@ public partial class StoryLoader : HBoxContainer
 		
 		GetNode<Button>("MainBody/B_Refresh").Pressed += RefreshCharacterList;
 		GetNode<Button>("MainBody/B_Load").Pressed += LoadButtonPressed;
-		NarrativeProfile = CSVTools.LoadNarrativeProfile().ToList<NarrativeBase>();
+		GetNode<Button>("MainBody/B_Save").Pressed += SaveButtonPressed;
+		NarrativeProfile = CSVTools.LoadNarrativeProfile().ToList<NarrativeBaseWithName>();
 	}
 
     private void LoadButtonPressed()
@@ -35,12 +38,26 @@ public partial class StoryLoader : HBoxContainer
 		// Length: {NarrativeProfile.Count}
 		// NarrativeProfile: {CharacterOptionButton.GetSelectableItem()} - {SB_StoryIndex.Value}
 		// ");
-		StoryLoaderEvent.Invoke(new NarrativeIds()
-		{
-			CharacterId =
-			NarrativeProfile.ElementAt(CharacterOptionButton.GetSelectableItem()).CharacterId,
-			StoryId = (int)SB_StoryIndex.Value
-		});
+		StoryLoaderEvent.Invoke(GetCharacterIds());
+    }
+
+	    private void SaveButtonPressed()
+    {
+        // Debug.WriteLine(@$"
+        // Length: {NarrativeProfile.Count}
+        // NarrativeProfile: {CharacterOptionButton.GetSelectableItem()} - {SB_StoryIndex.Value}
+        // ");
+        StorySaverEvent.Invoke(GetCharacterIds());
+    }
+
+    private NarrativeIds GetCharacterIds()
+    {
+        return new NarrativeIds()
+        {
+            CharacterId =
+                    NarrativeProfile.ElementAt(CharacterOptionButton.GetSelectableItem()).CharacterId,
+            StoryId = (int)SB_StoryIndex.Value
+        };
     }
 
     private void RefreshCharacterList()
