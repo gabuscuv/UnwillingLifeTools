@@ -12,21 +12,37 @@ namespace UnwillingLife.Tools;
 [Tool]
 public partial class StoriesEditor : VBoxContainer
 {
-	private StoryLoader storyLoader;
-	private StoryDescription storyDescription;
+	private StoryLoader _storyLoader;
+	private StoryDescription _storyDescription;
 	private StoryStats _storyStats;
-	private List<NarrativeStory> narrativeStoryList;
-	private List<NarrativePoints> narrativePointsList;
+	private List<NarrativeStory> _narrativeStoryList;
+	private List<NarrativePoints> _narrativePointsList;
 
 	public override async void _Ready()
 	{
 		var storyLoader = GetNode<StoryLoader>("StoryLoader");
 		storyLoader.StoryLoaderEvent += LoadStory;
 		storyLoader.StorySaverEvent += SaveStory;
-		storyDescription = GetNode<StoryDescription>("StoryDescription");
+		_storyDescription = GetNode<StoryDescription>("StoryDescription");
 		_storyStats = GetNode<StoryStats>("StoryStats");
-		narrativeStoryList = CSVTools.LoadNarrativeStoryCSV().ToList();
-		narrativePointsList = CSVTools.LoadNarrativePointsCSV().ToList();
+		try
+		{
+			_narrativeStoryList = CSVTools.LoadNarrativeStoryCSV().ToList();
+		}
+		catch (Exception ex)
+		{
+			_narrativeStoryList = new();
+			Debug.Print("Warning, NarrativeStoryFile invalid: "+ex.Message);
+		}
+		try
+		{
+			_narrativePointsList = CSVTools.LoadNarrativePointsCSV().ToList();
+		}
+		catch (Exception ex) 
+		{
+			_narrativePointsList = new();
+			Debug.Print("Warning, NarrativePointsFile invalid: "+ex.Message);
+		}
 	}
 
 
@@ -40,7 +56,7 @@ public partial class StoriesEditor : VBoxContainer
 
 	private void LoadStory(NarrativeIds currentNarrative)
 	{
-		var w = narrativePointsList
+		var w = _narrativePointsList
 				.Where(
 				p =>
 					p.CharacterId == currentNarrative.CharacterId &&
@@ -50,8 +66,8 @@ public partial class StoriesEditor : VBoxContainer
 		.SetStoryStats(
 			w.Count != 0 ? w : GenerateEmptyEntry(currentNarrative)
 		);
-		storyDescription.SetStoryDescription(
-			narrativeStoryList
+		_storyDescription.SetStoryDescription(
+			_narrativeStoryList
 				.Where(
 				p =>
 					p.CharacterId == currentNarrative.CharacterId &&
@@ -62,15 +78,16 @@ public partial class StoriesEditor : VBoxContainer
 
 	private void SaveStory(NarrativeIds currentNarrative)
 	{
-		Debug.WriteLine("Hi!");
 		SaveDescription(currentNarrative);
-		CSVTools.SaveNarrativeStory(narrativeStoryList);
+		CSVTools.SaveNarrativeStory(_narrativeStoryList);
 		SaveStats(currentNarrative);
-		CSVTools.SaveNarrativePoints(narrativePointsList);
+		CSVTools.SaveNarrativePoints(_narrativePointsList);
 	}
 
 	private void SaveStats(NarrativeIds currentNarrative)
 	{
+		IEnumerable<NarrativePoints> list;
+
 		var storyStats = this._storyStats.GetStoryStats();
 		storyStats.Select(e =>
 		{
@@ -82,7 +99,7 @@ public partial class StoriesEditor : VBoxContainer
 
 				)
 		{
-			IEnumerable<NarrativePoints> list = narrativePointsList.Where(p =>
+			list = _narrativePointsList.Where(p =>
 						p.CharacterId == currentNarrative.CharacterId &&
 						p.StoryId == currentNarrative.StoryId &&
 						p.Choice == story.Choice
@@ -90,14 +107,14 @@ public partial class StoriesEditor : VBoxContainer
 
 			if (list.Any())
 			{
-				narrativePointsList
+				_narrativePointsList
 				[
-					narrativePointsList.IndexOf(list.First())
+					_narrativePointsList.IndexOf(list.First())
 				] = story;
 			}
 			else
 			{
-				narrativePointsList.Add(story);
+				_narrativePointsList.Add(story);
 			}
 		}
 
@@ -107,25 +124,25 @@ public partial class StoriesEditor : VBoxContainer
 
 	private void SaveDescription(NarrativeIds currentNarrative)
 	{
-		var storySDescription = storyDescription.GetStoryDescription();
+		var storySDescription = _storyDescription.GetStoryDescription();
 		storySDescription.CharacterId = currentNarrative.CharacterId;
 		storySDescription.StoryId = currentNarrative.StoryId;
 
-		IEnumerable<NarrativeStory> list = narrativeStoryList.Where(p =>
+		IEnumerable<NarrativeStory> list = _narrativeStoryList.Where(p =>
 					p.CharacterId == currentNarrative.CharacterId &&
 					p.StoryId == currentNarrative.StoryId
 					);
 
 		if (list.Any())
 		{
-			narrativeStoryList
+			_narrativeStoryList
 			[
-				narrativeStoryList.IndexOf(list.First())
+				_narrativeStoryList.IndexOf(list.First())
 			] = storySDescription;
 		}
 		else
 		{
-			narrativeStoryList.Add(storySDescription);
+			_narrativeStoryList.Add(storySDescription);
 		}
 	}
 
