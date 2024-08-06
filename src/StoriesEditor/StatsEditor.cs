@@ -11,9 +11,9 @@ public partial class StatsEditor : VBoxContainer
 {
 	[Export]
 	public string StatNameTitle = string.Empty;
-	private SpinBox sb_Stress;
-	private SpinBox sb_Concern;
-	private SpinBox sb_MentalStability;
+	private SpinBox SB_Stress;
+	private SpinBox SB_Concern;
+	private SpinBox SB_MentalStability;
     public ENarrativeChoice Choice;
 
     private string GetNodeName(string name)
@@ -25,18 +25,18 @@ public partial class StatsEditor : VBoxContainer
 	{
 		GetNode<Label>("Label").Text = StatNameTitle;
 
-		sb_Stress = GetNode<SpinBox>(GetNodeName("Stress"));
-		sb_Concern = GetNode<SpinBox>(GetNodeName("Concern"));
-		sb_MentalStability = GetNode<SpinBox>(GetNodeName("MentalStability"));
+		SB_Stress = GetNode<SpinBox>(GetNodeName("Stress"));
+		SB_Concern = GetNode<SpinBox>(GetNodeName("Concern"));
+		SB_MentalStability = GetNode<SpinBox>(GetNodeName("MentalStability"));
 
 	}
 
 	public void SetStats(NarrativePoints e)
 	{
 		Choice = e.Choice;
-		sb_Stress.Value = e.Stress;
-		sb_Concern.Value = e.Concern;
-		sb_MentalStability.Value = e.MentalStability;
+		SB_Stress.Value = e.Stress;
+		SB_Concern.Value = e.Concern;
+		SB_MentalStability.Value = e.MentalStability;
 	}
 
 	public NarrativePoints GetStats()
@@ -44,9 +44,9 @@ public partial class StatsEditor : VBoxContainer
 		return new()
 		{
 			Choice = Choice,
-			Stress = (int)sb_Stress.Value,
-			Concern = (int)sb_Concern.Value,
-			MentalStability = (int)sb_MentalStability.Value,
+			Stress = (int)SB_Stress.Value,
+			Concern = (int)SB_Concern.Value,
+			MentalStability = (int)SB_MentalStability.Value,
 		};
 	}
 

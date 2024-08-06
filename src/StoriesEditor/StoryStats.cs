@@ -13,7 +13,6 @@ public partial class StoryStats : HBoxContainer
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		Debug.WriteLine("Test");
 		StatsEditor statsEditor = null;
 		PackedScene packedScene = ResourceLoader.Load("res://addons/UnwillingLifeTools/Components/StoriesEditor/StatsEditor.tscn") as PackedScene;
 		foreach (var choice in Enum.GetValues<ENarrativeChoice>()) 

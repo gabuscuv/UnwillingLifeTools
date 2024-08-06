@@ -16,20 +16,20 @@ public partial class StoryLoader : HBoxContainer
 	public StoryLoaderEventHandler StoryLoaderEvent { get; set; }
 	public StoryLoaderEventHandler StorySaverEvent { get; set; }
 
-    private List<NarrativeBaseWithName> NarrativeProfile;
-	private OptionButton CharacterOptionButton;
-    private SpinBox SB_StoryIndex;
+    private List<NarrativeBaseWithName> _narrativeProfileList;
+	private OptionButton OB_character;
+    private SpinBox SB_storyIndex;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
 	{
-		CharacterOptionButton = GetNode<OptionButton>("MainBody/OB_CharacterList");
-		SB_StoryIndex = GetNode<SpinBox>("MainBody/HBoxContainer/SB_StoryIndex");
+		OB_character = GetNode<OptionButton>("MainBody/OB_CharacterList");
+		SB_storyIndex = GetNode<SpinBox>("MainBody/HBoxContainer/SB_StoryIndex");
 		
 		GetNode<Button>("MainBody/B_Refresh").Pressed += RefreshCharacterList;
 		GetNode<Button>("MainBody/B_Load").Pressed += LoadButtonPressed;
 		GetNode<Button>("MainBody/B_Save").Pressed += SaveButtonPressed;
-		NarrativeProfile = CSVTools.LoadNarrativeProfile().ToList<NarrativeBaseWithName>();
+		_narrativeProfileList = CSVTools.LoadNarrativeProfile().ToList<NarrativeBaseWithName>();
 	}
 
     private void LoadButtonPressed()
@@ -55,17 +55,17 @@ public partial class StoryLoader : HBoxContainer
         return new NarrativeIds()
         {
             CharacterId =
-                    NarrativeProfile.ElementAt(CharacterOptionButton.GetSelectableItem()).CharacterId,
-            StoryId = (int)SB_StoryIndex.Value
+                    _narrativeProfileList.ElementAt(OB_character.GetSelectableItem()).CharacterId,
+            StoryId = (int)SB_storyIndex.Value
         };
     }
 
     private void RefreshCharacterList()
 	{
-		CharacterOptionButton.Clear();
-		foreach (var item in NarrativeProfile)
+		OB_character.Clear();
+		foreach (var item in _narrativeProfileList)
 		{
-			CharacterOptionButton.AddItem(item.Name);
+			OB_character.AddItem(item.Name);
 		}
 	}
 

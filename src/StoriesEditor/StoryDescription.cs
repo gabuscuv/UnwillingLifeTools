@@ -9,9 +9,9 @@ namespace UnwillingLife.Tools;
 [Tool]
 public partial class StoryDescription : VBoxContainer
 {
-    private TextEdit te_Description;
-    private TextEdit te_Date;
-    private TextEdit te_Cause;
+    private TextEdit TE_description;
+    private TextEdit TE_date;
+    private TextEdit TE_cause;
 
     private string GetNodeName(string name) 
 	{
@@ -20,24 +20,24 @@ public partial class StoryDescription : VBoxContainer
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		te_Description = GetNode<TextEdit>(GetNodeName("Description"));
-		te_Date = GetNode<TextEdit>(GetNodeName("Date"));
-		te_Cause = GetNode<TextEdit>(GetNodeName("Cause"));
+		TE_description = GetNode<TextEdit>(GetNodeName("Description"));
+		TE_date = GetNode<TextEdit>(GetNodeName("Date"));
+		TE_cause = GetNode<TextEdit>(GetNodeName("Cause"));
 	}
 
 	public void SetStoryDescription(NarrativeStory storyDescription)
 	{
-		te_Cause.Text = storyDescription.Cause;
-		te_Description.Text = storyDescription.Description;
-		te_Date.Text = storyDescription.IssueDate;
+		TE_cause.Text = storyDescription.Cause;
+		TE_description.Text = storyDescription.Description;
+		TE_date.Text = storyDescription.IssueDate;
 	}
 	public NarrativeStory GetStoryDescription()
 	{
 		return new()
 		{
-			Description = te_Description.Text,
-			Cause = te_Cause.Text,
-			IssueDate = te_Date.Text,
+			Description = TE_description.Text,
+			Cause = TE_cause.Text,
+			IssueDate = TE_date.Text,
 		};
 	}
 
