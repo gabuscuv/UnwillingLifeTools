@@ -32,16 +32,16 @@ public partial class StoriesEditor : VBoxContainer
 		catch (Exception ex)
 		{
 			_narrativeStoryList = new();
-			Debug.Print("Warning, NarrativeStoryFile invalid: "+ex.Message);
+			Debug.Print("Warning, NarrativeStoryFile invalid: " + ex.Message);
 		}
 		try
 		{
 			_narrativePointsList = CSVTools.LoadNarrativePointsCSV().ToList();
 		}
-		catch (Exception ex) 
+		catch (Exception ex)
 		{
 			_narrativePointsList = new();
-			Debug.Print("Warning, NarrativePointsFile invalid: "+ex.Message);
+			Debug.Print("Warning, NarrativePointsFile invalid: " + ex.Message);
 		}
 	}
 
@@ -88,16 +88,14 @@ public partial class StoriesEditor : VBoxContainer
 	{
 		IEnumerable<NarrativePoints> list;
 
-		var storyStats = this._storyStats.GetStoryStats();
-		storyStats.Select(e =>
+		IEnumerable<NarrativePoints> storyStats = _storyStats.GetStoryStats()
+		.Select(e =>
 		{
 			e.CharacterId = currentNarrative.CharacterId;
 			e.StoryId = currentNarrative.StoryId;
 			return e;
 		});
-		foreach (var story in storyStats
-
-				)
+		foreach (var story in storyStats)
 		{
 			list = _narrativePointsList.Where(p =>
 						p.CharacterId == currentNarrative.CharacterId &&
@@ -119,8 +117,6 @@ public partial class StoriesEditor : VBoxContainer
 		}
 
 	}
-
-
 
 	private void SaveDescription(NarrativeIds currentNarrative)
 	{

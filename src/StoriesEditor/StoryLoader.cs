@@ -32,33 +32,21 @@ public partial class StoryLoader : HBoxContainer
 		_narrativeProfileList = CSVTools.LoadNarrativeProfile().ToList<NarrativeBaseWithName>();
 	}
 
-    private void LoadButtonPressed()
-    {
-		// Debug.WriteLine(@$"
-		// Length: {NarrativeProfile.Count}
-		// NarrativeProfile: {CharacterOptionButton.GetSelectableItem()} - {SB_StoryIndex.Value}
-		// ");
+    private void LoadButtonPressed() => 
 		StoryLoaderEvent.Invoke(GetCharacterIds());
-    }
 
-	    private void SaveButtonPressed()
-    {
-        // Debug.WriteLine(@$"
-        // Length: {NarrativeProfile.Count}
-        // NarrativeProfile: {CharacterOptionButton.GetSelectableItem()} - {SB_StoryIndex.Value}
-        // ");
-        StorySaverEvent.Invoke(GetCharacterIds());
-    }
+    private void SaveButtonPressed() => 
+		StorySaverEvent.Invoke(GetCharacterIds());
 
-    private NarrativeIds GetCharacterIds()
-    {
-        return new NarrativeIds()
-        {
-            CharacterId =
-                    _narrativeProfileList.ElementAt(OB_character.GetSelectableItem()).CharacterId,
-            StoryId = (int)SB_storyIndex.Value
-        };
-    }
+    private NarrativeIds GetCharacterIds() =>
+		new NarrativeIds()
+		{
+			CharacterId =
+						_narrativeProfileList
+							.ElementAt(OB_character.GetSelectedId())
+							.CharacterId,
+			StoryId = (int)SB_storyIndex.Value
+		};
 
     private void RefreshCharacterList()
 	{
